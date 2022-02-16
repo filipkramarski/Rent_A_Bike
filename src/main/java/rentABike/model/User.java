@@ -1,7 +1,15 @@
 package rentABike.model;
 
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Data
+@Entity
 public class User {
 
+    @Id
     private String username;
 
     private String password;
@@ -15,5 +23,9 @@ public class User {
         this.password = password;
         this.name = name;
         this.surname = surname;
+    }
+
+    public User () {
+
     }
 }

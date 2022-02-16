@@ -1,5 +1,6 @@
 package rentABike.service.impl;
 
+import org.springframework.stereotype.Service;
 import rentABike.model.User;
 import rentABike.model.exceptions.InvalidArgumentsException;
 import rentABike.model.exceptions.PasswordsDoNotMatchException;
@@ -7,6 +8,7 @@ import rentABike.model.exceptions.UsernameAlreadyExistsException;
 import rentABike.repository.jpa.UserRepository;
 import rentABike.service.UserService;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
