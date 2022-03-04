@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<th:block>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rent a bike</title>
+        <!-- core CSS -->
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+        <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+        <link th:href="@{/css/animate.min.css}" rel="stylesheet">
+        <link th:href="@{/css/owl.carousel.css}" rel="stylesheet">
+        <link th:href="@{/css/owl.transitions.css}" rel="stylesheet">
+        <link th:href="@{/css/prettyPhoto.css}" rel="stylesheet">
+        <link th:href="@{/css/magnific-popup.css}" rel="stylesheet">
+        <link th:href="@{/css/gallery-1.css}" rel="stylesheet">
+        <link th:href="@{/css/styles.css}" rel="stylesheet">
+        <!--[if lt IE 9]
+        <script th:src="@{/js/html5shiv.js}"></script>
+        <script th:src="@{/js/respond.min.js}"></script>
+        <![endif]-->
+        <link rel="shortcut icon" href="../static/images/ico/favicon.ico">
+    </head>
+
+    <body id="home">
+
+    <header id="header">
+        <nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <i class="" aria-hidden="true"></i>
+                    <div class="logoSection"> <a class="navbar-brand" href="index.html">Bike</a>
+                        <span class="caption">Bike Rental</span>
+                    </div>
+                </div>
+
+                <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="scroll active"><a href="#home">Home</a></li>
+                        <li class="scroll"><a href="/rent">Our Service</a></li>
+                        <li class="scroll"><a href="#about">About Us</a></li>
+                        <li class="scroll"><a href="#portfolio">Gallery</a></li>
+                        <li class="scroll"><a href="#portfolio">Log in</a></li>
+                    </ul>
+                </div>
+            </div><!--/.container-->
+        </nav><!--/nav-->
+    </header><!--/header-->
+    <section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <form action="/rent/add" method="POST">
+                    <div class="form-group">
+                        <label for="name">Product name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="name"
+                               name="name"
+                               th:value="(${rent} != null ? ${rent.getName()} : '')"
+                               required
+                               placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="text"
+                               class="form-control"
+                               id="price"
+                               name="price"
+                               th:value="(${rent} != null ? ${rent.getPrice()} : '')"
+                               placeholder="Price">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="text"
+                               class="form-control"
+                               id="quantity"
+                               name="quantity"
+                               th:value="(${rent} != null ? ${rent.getQuantity()} : '')"
+                               placeholder="Quantity">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select name="category" class="form-control">
+                            <option th:if="${rent} != null"
+                                    th:selected="${rent.getCategory() != null && rent.getCategory().getId() == cat.getId()}"
+                                    th:each="cat : ${categories}"
+                                    th:value="${cat.getId()}"
+                                    th:text="${cat.getName()}">
+                            </option>
+                            <option th:if="${rent} == null"
+                                    th:each="cat : ${categories}"
+                                    th:value="${cat.getId()}"
+                                    th:text="${cat.getName()}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Brand</label>
+                        <select name="brand" class="form-control">
+                            <option th:if="${rent} != null"
+                                    th:selected="${rent.getBrand() != null && rent.getBrand().getId() == br.getId()}"
+                                    th:each="br : ${brand}"
+                                    th:value="${br.getId()}"
+                                    th:text="${br.getName()}">
+                            </option>
+                            <option th:if="${rent} == null"
+                                    th:each="br : ${brand}"
+                                    th:value="${br.getId()}"
+                                    th:text="${br.getName()}">
+                            </option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a type="button" class="btn btn-primary" href="/rent">Back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    </section>
+    </body>
+</th:block>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    &copy; Rent a bike.
+                </div>
+                <div class="col-sm-6">
+                    <ul class="social-icons">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fa fa-github"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer><!--/#footer-->
+
+    <!--<script th:src="@{/js/html5shiv.js}"></script>
+    <script th:src="@{/js/respond.min.js}"></script>-->
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script th:src="@{js/owl.carousel.min.js}"></script>
+    <script th:src="@{/js/mousescroll.js}"></script>
+    <script th:src="@{/js/smoothscroll.js}"></script>
+    <script th:src="@{/js/jquery.prettyPhoto.js}"></script>
+    <script th:src="@{/js/jquery.inview.min.js}"></script>
+    <script th:src="@{/js/wow.min.js}"></script>
+    <script src="contact/jqBootstrapValidation.js"></script>
+    <script src="contact/contact_me.js"></script>
+
+    <script type="text/javascript" th:src="@{/js/jquery.isotope.min.js}"></script><!-- Gallery Filter -->
+    <script type="text/javascript" th:src="@{/js/jquery.magnific-popup.min.js}"></script><!-- Gallery Popup -->
+
+    <script th:src="@{/js/custom-scripts.js}"></script>
+</html>

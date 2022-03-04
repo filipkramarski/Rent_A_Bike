@@ -32,7 +32,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <i class="" aria-hidden="true"></i>
-                <div class="logoSection"> <a class="navbar-brand" href="index.html">Bike</a>
+                <div class="logoSection"> <a class="navbar-brand" href="/home">Bike</a>
                     <span class="caption">Bike Rental</span>
                 </div>
             </div>
@@ -49,6 +49,21 @@
         </div><!--/.container-->
     </nav><!--/nav-->
 </header><!--/header-->
+
+    <section id="hero-text" class="wow fadeIn">
+        <div class="container">`
+            <div class="row">
+
+                <div class="col-sm-3">
+                    <a class="btn btn-primary btn-lg">Drive in the city</a>
+                </div>
+                <div class="col-sm-3">
+                    <a class="btn btn-primary btn-lg">Drive in the mountain</a>
+                </div>
+            </div>
+        </div>
+    </section><!--/#hero-text-->
+
 <div class="container mb-4">
     <div class="row">
         <div class="col-12" th:if="${rent.size() > 0}">
@@ -66,7 +81,7 @@
                     <tr th:each="re : ${rent}">
                         <td th:text="${re.getName()}"></td>
                         <td th:text="${re.getPrice()}"></td>
-                        <td th:text="${re.getBrand()}"></td>
+                        <td th:text="${re.getBrand().getName()}"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -75,7 +90,7 @@
         <div class="col mb-3">
             <div class="row">
                 <div class="col-sm-12 col-md-12">
-                    <a href="" class="btn btn-block btn-dark">Add new product for rent</a>
+                    <a href="/rent/addNew" class="btn btn-block btn-dark">Add new product for rent</a>
                 </div>
             </div>
         </div>
