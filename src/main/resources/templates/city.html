@@ -68,6 +68,10 @@
                         <td th:text="${re.getName()}"></td>
                         <td th:text="${re.getPrice()}"></td>
                         <td th:text="${re.getBrand().getName()}"></td>
+
+                        <form th:action="@{'/favourites/add/{id}' (id=${rent.getId()})}" th:method="POST">
+                            <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash">Add to favourites</i></button>
+                        </form>
                     </tr>
                     </tbody>
                 </table>

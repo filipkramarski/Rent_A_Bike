@@ -36,7 +36,6 @@ public class AccessoriesController {
         if(error != null && !error.isEmpty()){
             model.addAttribute("hasError",true);
             model.addAttribute("error",error);
-
         }
         List<Accessories> accessories = this.accessoriesService.findAll();
         model.addAttribute("accessories", accessories);
