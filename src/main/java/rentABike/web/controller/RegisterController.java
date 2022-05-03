@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import rentABike.model.Role;
 import rentABike.model.exceptions.PasswordsDoNotMatchException;
 import rentABike.service.UserService;
 
@@ -33,9 +34,10 @@ public class RegisterController {
                            @RequestParam String password,
                            @RequestParam String repeatedPassword,
                            @RequestParam String name,
-                           @RequestParam String surname) {
+                           @RequestParam String surname,
+                           @RequestParam Role role) {
         try {
-            this.userService.register(username,password,repeatedPassword,name,surname);
+            this.userService.register(username,password,repeatedPassword,name,surname,role);
             return "redirect:/login";
         }
         catch (PasswordsDoNotMatchException exception) {

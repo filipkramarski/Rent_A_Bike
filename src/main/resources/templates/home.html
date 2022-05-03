@@ -43,12 +43,20 @@
 
             <div class="collapse navbar-collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li class="scroll active"><a href="/home">Home</a></li>
+                    <li class="scroll"><a href="/home">Home</a></li>
                     <li class="scroll"><a href="/rent">Our Service</a></li>
-                    <li class="scroll"><a href="#about">About Us</a></li>
-                    <li class="scroll"><a href="#portfolio">Gallery</a></li>
+                    <li class="scroll"><a href="">About Us</a></li>
+                    <li class="scroll"><a href="">Gallery</a></li>
                     <li class="scroll"><a href="/login">Log in</a></li>
+                    <li class="scroll"><a href="/logout">Log out</a></li>
+                    <li class="scroll">
+                        <a class="nav-link" href="#">
+                            <th:block th:if="${#request.getRemoteUser()!=null}"
+                                      th:text="${#request.getRemoteUser()}"/>
+                        </a>
+                    </li>
                 </ul>
+
             </div>
         </div><!--/.container-->
     </nav><!--/nav-->
@@ -91,15 +99,15 @@
 <section id="hero-text" class="wow fadeIn">
     <div class="container">`
         <div class="row">
-
-            <div class="col-sm-3">
-                <a class="btn btn-primary btn-lg">Drive in the city</a>
+                <h2>
+                    Welcome
+                </h2>
+            <h2 class="nav-link" href="#">
+                <th:block th:if="${#request.getRemoteUser()!=null}"
+                          th:text="${#request.getRemoteUser()}"/>
+            </h2>
+                </div>
             </div>
-            <div class="col-sm-3">
-                <a class="btn btn-primary btn-lg">Drive in the mountain</a>
-            </div>
-        </div>
-    </div>
 </section><!--/#hero-text-->
 
 <footer id="footer">
