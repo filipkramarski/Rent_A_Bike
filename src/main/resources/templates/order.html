@@ -1,0 +1,38 @@
+
+
+        <style>
+        .card{
+        background: mediumseagreen;
+        }
+        </style>
+
+    </head>
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h3 class="jumbotron-heading">Thank you for booking with RentABike
+                <th:block th:if="${#request.getRemoteUser()!=null}"
+                          th:text="${#request.getRemoteUser()}"/>
+            </h3>
+        </div>
+    </section>
+    <div th:if="${hasError}">
+        <h5 class="text-center text danger" th:text="${error}"></h5>
+    </div>
+    <div class="container mb-4">
+    <div class="row">
+        <div class="col-md-3 m-5"th:each="re : ${rent}">
+            <div class="card fa-border " style="width: 26rem;">
+                <div class="card-body">
+
+                    <img th:src="@{/images/mountainbike1.jpg}" height="150" width="250"/>
+                    <td><h3 class="card-title" th:text="${re.getName()}">Card title</h3></td>
+                    <td><h4 class="card-text" th:text="${re.getPrice()}" ></h4></td>
+
+                        <button type="submit" class="btn btn-default bg-primary">Rent Bike</button>
+                    </form>
+                    </td>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

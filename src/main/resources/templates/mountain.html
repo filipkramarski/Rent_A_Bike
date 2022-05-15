@@ -1,27 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<th:block xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Rent a bike</title>
-        <!-- core CSS -->
-        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-        <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
-        <link th:href="@{/css/animate.min.css}" rel="stylesheet">
-        <link th:href="@{/css/owl.carousel.css}" rel="stylesheet">
-        <link th:href="@{/css/owl.transitions.css}" rel="stylesheet">
-        <link th:href="@{/css/prettyPhoto.css}" rel="stylesheet">
-        <link th:href="@{/css/magnific-popup.css}" rel="stylesheet">
-        <link th:href="@{/css/gallery-1.css}" rel="stylesheet">
-        <link th:href="@{/css/styles.css}" rel="stylesheet">
-        <!--[if lt IE 9]>
-        <script src="../static/js/html5shiv.js"></script>
-        <script src="../static/js/respond.min.js"></script>
-        <![endif]-->
-        <link rel="shortcut icon" href="../static/images/ico/favicon.ico">
-        <style>
-
+    <style>
             .slider {
                 -webkit-appearance: none;
                 width: 100%;
@@ -59,55 +36,20 @@
             #price{
                 width: 20%;
             }
+            .card{
+                background: mediumseagreen;
+            }
+            .row{
+                margin-top: 30px;
+            }
+            .bike-heading{
+                height: 300px;
+            }
+            .hiphen{
+                margin-left: 400px;
+            }
         </style>
     </head>
-    <header id="header">
-        <nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="banner">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <i class="" aria-hidden="true"></i>
-                    <div class="logoSection"> <a class="navbar-brand" href="/home">Bike</a>
-                        <span class="caption">Bike Rental</span>
-                    </div>
-                </div>
-
-                <div class="collapse navbar-collapse navbar-right">
-                    <ul class="nav navbar-nav">
-                        <li class="scroll"><a href="/home">Home</a></li>
-                        <li class="scroll"><a href="/rent">Our Service</a></li>
-                        <li class="scroll"><a href="/">About Us</a></li>
-                        <li class="scroll"><a href="/">Gallery</a></li>
-                        <li class="scroll"><a href="/login">Log in</a></li>
-                        <li class="scroll"><a href="/logout">Log out</a></li>
-                        <li class="scroll">
-                            <a class="nav-link" href="#">
-                                <th:block th:if="${#request.getRemoteUser()!=null}"
-                                          th:text="${#request.getRemoteUser()}"/>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div><!--/.container-->
-        </nav><!--/nav-->
-    </header><!--/header-->
-    <body>
-    <style>
-        .row{
-            margin-top: 30px;
-        }
-        .bike-heading{
-            height: 300px;
-        }
-        .hiphen{
-            margin-left: 400px;
-        }
-    </style>
     <body>
     <div class="container mb-4" >
         <div class="row">
@@ -127,6 +69,7 @@
                         Lightweight bikes, aero bikes, triathlon, cyclocross or even gravel
                         bikes, the tough part is choosing!</p></div>
             </div>
+            <hr>
             <div class="search-tag-desc-result">
                 <div class="col">
                     <form id="filter-form" action="/rent/mountain" method="GET">
@@ -145,20 +88,29 @@
             </div>
             <div class="row">
                 <div class="col-md-3 m-5"th:each="re : ${rent}">
-                    <div class="card fa-border" style="width: 18rem;">
+                    <div class="card fa-border " style="width: 26rem;">
                         <div class="card-body">
-                            <img>
-                            <img class="card-img-top" src="http://girasol.bike/RS400/GIRASOL%20RS400-BIKE-BLK.JPG"</img>
-                            alt="Card image cap">
-                            <td><h5 class="card-title" th:text="${re.getName()}">Card title</h5></td>
-                            <td><p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p></td>
-                            <td>
-                                <form th:action="@{'/favourites/add/{id}' (id=${re.getId()})}" th:method="POST">
-                                    <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash">Add to
-                                        favourites</i></button>
+
+                            <img th:src="@{/images/mountainbike1.jpg}" height="150" width="250"/>
+                            <td><h3 class="card-title" th:text="${re.getName()}">Card title</h3></td>
+                            <td><h4 class="card-text" th:text="${re.getPrice()}" ></h4></td>
+                                <td>
+                                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <form th:action="@{'/rent/delete/mountain/{id}' (id=${re.getId()})}" th:method="DELETE">
+                                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash">Delete</i></button>
+                                    </form>
+                                </th:block>
+                                </td>
+                                <td>
+                                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <a th:href="@{'/rent/edit-form/{id}' (id=${re.getId()})}" class="btn btn-sm btn-info"><i class="fa fa-trash">Edit</i></a>
+                                </th:block>
+                                </td>
+                                <td>
+                                    <form th:action="@{'/order/add/{id}' (id=${re.getId()})}" th:method="POST">
+                                    <button type="submit" class="btn btn-default bg-primary">Rent Bike</button>
                                 </form>
-                            </td>
+                                </td>
                         </div>
                     </div>
                 </div>
@@ -167,7 +119,9 @@
             <div class="col mb-3">
                 <div class="row">
                     <div class="col-sm-12 col-md-12">
-                        <a href="/rent/addNew" class="btn btn-block btn-dark">Add new product for rent</a>
+                        <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                            <a href="/rent/addNew" class="btn btn-block btn-dark">Add new product for rent</a>
+                        </th:block>
                     </div>
                 </div>
             </div>
@@ -182,24 +136,3 @@
         }
     </script>
     </body>
-</th:block>
-<footer id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                &copy; Rent a bike.
-            </div>
-            <div class="col-sm-6">
-                <ul class="social-icons">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                    <li><a href="#"><i class="fa fa-github"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer><!--/#footer-->
-</html>

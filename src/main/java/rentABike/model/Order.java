@@ -8,7 +8,8 @@ import java.util.List;
 
 @Data
 @Entity
-public class AddToFavourites {
+@Table(name="order_details")
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +21,13 @@ public class AddToFavourites {
     @ManyToMany
     private List<Rent> rent;
 
-    public AddToFavourites (User user) {
+    @ManyToMany
+    private List<Accessories> accessories;
+
+    public Order (User user) {
         this.user = user;
         this.rent = new ArrayList<>();
     }
-    public AddToFavourites () {
+    public Order () {
     }
 }

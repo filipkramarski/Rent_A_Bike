@@ -2,13 +2,13 @@ package rentABike.repository.jpa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import rentABike.model.AddToFavourites;
+import rentABike.model.Order;
 import rentABike.model.User;
 
 import java.util.Optional;
 
 @Repository
-public interface FavouritesRepository extends JpaRepository<AddToFavourites, Long> {
+public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    Optional<AddToFavourites> findByUser(User user);
+    Optional<Order> findByUser(User user);
 }

@@ -1,0 +1,23 @@
+
+<div class="container mb-4">
+<div class="row">
+<div class="col-12" th:if="${orders.size() > 0}">
+<div class="table-responsive">
+<table class="table table-striped">
+<thead>
+<tr>
+<th scope="col">Name</th>
+<th scope="col">Surname</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="order : ${orders}">
+    <td class="fa-bold" th:text="${order.getUser().getName()}"></td>
+<td class="fa-bold" th:text="${order.getUser().getSurname()}"></td>
+</td>
+</tr>
+</tbody>
+</div>
+</div>
+</div>
+</div>

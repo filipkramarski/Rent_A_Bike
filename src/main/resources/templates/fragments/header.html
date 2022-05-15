@@ -1,0 +1,40 @@
+<header id="header">
+    <nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <i class="" aria-hidden="true"></i>
+                <div class="logoSection"> <a class="navbar-brand" href="/home">Bike</a>
+                    <span class="caption">Bike Rental</span>
+                </div>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li class="scroll"><a href="/home">Home</a></li>
+                    <li class="scroll"><a href="/rent">Our Service</a></li>
+                    <li class="scroll"><a href="/">About Us</a></li>
+                    <li class="scroll"><a href="/">Gallery</a></li>
+                    <li class="scroll"><a href="/login">Log in</a></li>
+                    <li class="scroll"><a href="/logout">Log out</a></li>
+                    <th:block sec:authorize="hasRole('ROLE_USER')">
+                    <li class="scroll">
+                        <a class="nav-link" href="/order">
+                            <th:block th:if="${#request.getRemoteUser()!=null}"
+                                      th:text="${#request.getRemoteUser()}"/>
+                        </a>
+                    </li>
+                    </th:block>
+                    <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                    <li class="scroll"><a href="/order/allOrders">View orders</a></li>
+                    </th:block>
+                </ul>
+            </div>
+        </div><!--/.container-->
+    </nav><!--/nav-->
+</header><!--/header-->

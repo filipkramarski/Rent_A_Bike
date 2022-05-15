@@ -1,0 +1,87 @@
+<style>
+    .row{
+        margin-top: 30px;
+    }
+</style>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <form action="/accessories/add" method="POST">
+                        <div class="form-group">
+                            <label for="name">Product name</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="name"
+                                   name="name"
+                                   th:value="(${ac} != null ? ${ac.getName()} : '')"
+                                   required
+                                   placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="price"
+                                   name="price"
+                                   th:value="(${ac} != null ? ${ac.getPrice()} : '')"
+                                   placeholder="Price">
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="quantity"
+                                   name="quantity"
+                                   th:value="(${ac} != null ? ${ac.getQuantity()} : '')"
+                                   placeholder="Quantity">
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select name="category" class="form-control">
+                                <option th:if="${ac} != null"
+                                        th:selected="${ac.getCategory() != null && ac.getCategory().getId() == cat.getId()}"
+                                        th:each="cat : ${categories}"
+                                        th:value="${cat.getId()}"
+                                        th:text="${cat.getName()}">
+                                </option>
+                                <option th:if="${ac} == null"
+                                        th:each="cat : ${categories}"
+                                        th:value="${cat.getId()}"
+                                        th:text="${cat.getName()}">
+                                </option>
+                            </select>
+                        </div>
+                                <label>Photos: </label>
+                                <input type="file" name="image" accept="image/png, image/jpeg" />
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a type="button" class="btn btn-primary" href="/rent">Back</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    </body>
+</th:block>
+
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                &copy; Rent a bike.
+            </div>
+            <div class="col-sm-6">
+                <ul class="social-icons">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                    <li><a href="#"><i class="fa fa-github"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer><!--/#footer-->

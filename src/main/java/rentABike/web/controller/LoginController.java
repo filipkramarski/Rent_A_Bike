@@ -24,7 +24,8 @@ public class LoginController {
     @GetMapping
     public String getLoginPage(Model model) {
 
-        return "login.html";
+        model.addAttribute("bodyContent","login");
+        return "master-template";
 
     }
 
@@ -44,5 +45,4 @@ public class LoginController {
             return "login";
         }
     }
-
 }
